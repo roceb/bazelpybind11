@@ -1,0 +1,17 @@
+#!/bin/bash
+
+# this scripts grabs bazelisk and allows it to be used as the main bazel tool
+DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
+OS="$(uname -o)"
+if [ "$OS" == "GNU/Linux" ]; then
+    OS=linux
+fi
+ARCH="$(uname -m)"
+if [ "$ARCH" == "aarch64" ]; then
+    ARCH="arm64"
+fi
+if [ ! -f "$DIR/bazelisk" ]; then
+    wget -O "$DIR/bazelisk" "https://github.com/bazelbuild/bazelisk/releases/download/v1.20.0/bazelisk-$OS-$ARCH"
+    chmod +x "$DIR/bazelisk"
+fi
+"$DIR/bazelisk" "$@"
