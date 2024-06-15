@@ -1,4 +1,5 @@
 #!/bin/bash
+set -euxo pipefail
 
 # this scripts grabs bazelisk and allows it to be used as the main bazel tool
 DIR="$( dirname -- "${BASH_SOURCE[0]}" )"
